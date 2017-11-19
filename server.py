@@ -115,3 +115,12 @@ def list():
    
    rows = cur.fetchall(); 
    return render_template("list.html",rows = rows)
+   
+@server.route('/create')
+def create():
+    con = sql.connect("database.db")
+    cursor = con.cursor()
+    cursor.execute("CREATE TABLE ratings (title text, review text, rating int, name text, date datetime, location text);")
+    cursor.execute("INSERT INTO ratings VALUES (?,?,?,?,?,?)",("Great Quiet Coffeehouse","The atmosphere was great! It's very close to campus, and the coffee is awesome.","5","CS Student",2017-11-18,"ChIJZWZ6QRMsDogRpCk7IQyoP8g") )
+    cursor.execute("INSERT INTO ratings VALUES (?,?,?,?,?,?)",("Very historic building","Great example of Mies' work!","4","Arkie",2017-11-18,"ChIJz8uyCg0sDogRD7rGqlEJIXA") )   
+    con.commit()
