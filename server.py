@@ -74,9 +74,9 @@ def location_image(search):
     return response.url;
     
     
-@server.route('/rate')
-def new_student():
-   return render_template('rating.html')
+@server.route('/rate/<place_id>')
+def rate_page(place_id):
+   return render_template('rating.html',location=place_id)
    
 @server.route('/rate',methods = ['POST', 'GET'])
 def rate():
@@ -87,18 +87,31 @@ def rate():
          review = request.form['review']
          rating = request.form['rating']
          name = request.form['name']
-         date = datetime.datetime.now()
+         date = datetime.date.today()
+         location = request.form['place']
          msg = " "
          with sql.connect("database.db") as con:
             cur = con.cursor()
-            cur.execute("INSERT INTO ratings (title,review,rating,name,date) VALUES (?,?,?,?,?)",(title,review,rating,name,date) )
-            
+            # cur.execute("INSERT INTO ratings VALUES (?,?,?,?,?,?)",("Great Quiet Coffeehouse","The atmosphere was great! It's very close to campus, and the coffee is awesome.","5","CS Student",2017-11-18,"ChIJZWZ6QRMsDogRpCk7IQyoP8g") )
+            cur.execute("INSERT INTO ratings VALUES (?,?,?,?,?,?)",(title,review,rating,name,date,location) )
+            # cur.execute("INSERT INTO ratings VALUES (?,?,?,?,?,?)",("Very historic building","Great example of Mies' work!","4","Arkie",2017-11-18,"ChIJz8uyCg0sDogRD7rGqlEJIXA") )
             con.commit()
-            msg = "Record successfully added"
+            msg = "success"
       except:
          con.rollback()
-         msg = "error in insert operation"
+         msg = "error"
       
       finally:
          return render_template("result.html",msg=msg)
          con.close()
+         
+@server.route('/list')
+def list():
+   con = sql.connect("database.db")
+   con.row_factory = sql.Row
+   
+   cur = con.cursor()
+   cur.execute("select * from ratings")
+   
+   rows = cur.fetchall(); 
+   return render_template("list.html",rows = rows)

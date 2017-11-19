@@ -2,13 +2,13 @@
 <html>
    <body>
       
-      <form action = "{{ url_for('rate') }}" method = "POST">
+      <form action = "/rate" method = "post">
          <h3>Rating</h3>
          Title<br>
          <input type = "text" name = "title" /></br>
          
          Review<br>
-         <textarea name = "review" ></textarea><br>
+         <input type = "text" name = "review" /></br>
          
          Rating<br>
          <input type="radio" name="rating" value="1"> 1 star<br>
@@ -20,7 +20,11 @@
          Name (will be displayed with your review)<br>
          <input type = "text" name = "name" ></textarea><br>
          
+         <input type="text" name="place" value={{location}}>
+         
          <input type = "submit" value = "submit" /><br>
+         
+         
       </form>
       
    </body>
