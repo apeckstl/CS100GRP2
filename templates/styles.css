@@ -378,16 +378,39 @@ cursor: pointer;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    padding-top: 85%;
+    padding-top: 400px;
     
 }
 
+table, th, td {
+    border: 0px solid white;
+}
 
-.table{
-    
-   text-align: center; 
-    
-    
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    height: 50px;
+    vertical-align: bottom;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: white;
+    color: #98aabb;
+}
+
+/*tr:nth-child(even) {background-color: #f2f2f2;}*/
+
+tr:hover {
+    background-color: white;
+    color: #98aabb;
 }
 
 .inputfield {
