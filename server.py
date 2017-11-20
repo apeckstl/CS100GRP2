@@ -34,15 +34,22 @@ def name(name=None):
 def sample():
     return render_template('map.html')
     
-@server.route('/locations')
-def locations():
-    return render_template('locations.html') 
-
 @server.errorhandler(404)
 def page_not_found(error):
     return render_template('404.html'), 404
 
 # Responding to Requests with Data
+@server.route('/locations')
+def locations():
+   con = sql.connect("locations.db")
+   con.row_factory = sql.Row
+   
+   cur = con.cursor()
+   cur.execute("select * from locations")
+   
+   rows = cur.fetchall(); 
+   return render_template("locations.html",rows = rows)
+
 
 @server.route('/reflect/<name>')
 def reflect(name=None):
@@ -92,9 +99,7 @@ def rate():
          msg = " "
          with sql.connect("database.db") as con:
             cur = con.cursor()
-            # cur.execute("INSERT INTO ratings VALUES (?,?,?,?,?,?)",("Great Quiet Coffeehouse","The atmosphere was great! It's very close to campus, and the coffee is awesome.","5","CS Student",2017-11-18,"ChIJZWZ6QRMsDogRpCk7IQyoP8g") )
             cur.execute("INSERT INTO ratings VALUES (?,?,?,?,?,?)",(title,review,rating,name,date,location) )
-            # cur.execute("INSERT INTO ratings VALUES (?,?,?,?,?,?)",("Very historic building","Great example of Mies' work!","4","Arkie",2017-11-18,"ChIJz8uyCg0sDogRD7rGqlEJIXA") )
             con.commit()
             msg = "success"
       except:
@@ -116,11 +121,20 @@ def list():
    rows = cur.fetchall(); 
    return render_template("list.html",rows = rows)
    
-@server.route('/create')
-def create():
+@server.route('/create_ratings')
+def create_ratings():
     con = sql.connect("database.db")
     cursor = con.cursor()
     cursor.execute("CREATE TABLE ratings (title text, review text, rating int, name text, date datetime, location text);")
     cursor.execute("INSERT INTO ratings VALUES (?,?,?,?,?,?)",("Great Quiet Coffeehouse","The atmosphere was great! It's very close to campus, and the coffee is awesome.","5","CS Student",2017-11-18,"ChIJZWZ6QRMsDogRpCk7IQyoP8g") )
     cursor.execute("INSERT INTO ratings VALUES (?,?,?,?,?,?)",("Very historic building","Great example of Mies' work!","4","Arkie",2017-11-18,"ChIJz8uyCg0sDogRD7rGqlEJIXA") )   
+    con.commit()
+
+@server.route('/create-locations')
+def create_locations():
+    con = sql.connect("locations.db")
+    cursor = con.cursor()
+    cursor.execute("CREATE TABLE locations (name text, id text, type text);")
+    cursor.execute("INSERT INTO locations VALUES (?,?,?)",("S. R. Crown Hall","ChIJz8uyCg0sDogRD7rGqlEJIXA","study") )
+    cursor.execute("INSERT INTO locations VALUES (?,?,?)",("The Red Line Cafe","ChIJZWZ6QRMsDogRpCk7IQyoP8g","cafe") )   
     con.commit()
