@@ -50,6 +50,7 @@ def locations():
    rows = cur.fetchall(); 
    return render_template("locations.html",rows = rows)
 
+@server.route('ratings/<>')
 
 @server.route('/reflect/<name>')
 def reflect(name=None):
@@ -137,4 +138,11 @@ def create_locations():
     cursor.execute("CREATE TABLE locations (name text, id text, type text);")
     cursor.execute("INSERT INTO locations VALUES (?,?,?)",("S. R. Crown Hall","ChIJz8uyCg0sDogRD7rGqlEJIXA","study") )
     cursor.execute("INSERT INTO locations VALUES (?,?,?)",("The Red Line Cafe","ChIJZWZ6QRMsDogRpCk7IQyoP8g","cafe") )   
+    con.commit()
+    
+@server.route('/add-locations')
+def add_locations():
+    con = sql.connect("locations.db")
+    cursor = con.cursor()
+    cursor.execute("INSERT INTO locations VALUES (?,?,?)",("S. R. Crown Hall","ChIJz8uyCg0sDogRD7rGqlEJIXA","study") )
     con.commit()
