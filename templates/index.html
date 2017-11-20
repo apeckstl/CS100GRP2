@@ -1,10 +1,85 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>CS 100 Project</title>
-    </head>
-    <body>
-        <h1>Welcome to our project.</h1>
-        <p>Hello, {{ name }}.</p>
-    </body>
+<html lang="en">
+<head>
+<title>CS 100 Project</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    
+<div id="mySidenav" class="sidenav">
+    <div class="content" style = "padding: 6px 10px 0px 20px;">
+        <div class="box" style = "padding: 0px;">
+          <a href="javascript:void(0)"  onclick="closeNav()">&times;
+              </a>
+        </div>
+        <span style="display:inline-block; width: 1px;"></span>
+    <div class="box" style = "padding: 0px; height: 80%">
+
+          <a href="index.html">Home</a>
+          <a href="myplaces.html">My Places</a>
+          <a href="list.html">Find</a>
+          <a href="rating.html">Rate</a>
+     </div>
+    </div>
+</div>
+<div id="main" class="content">
+          <div class="topnav">
+            <a onclick="openNav()">&#9776;</a>
+              <b>
+                  Hello, {{ name }}, Welcome to ???App
+              </b>
+          </div>
+          	<span style="display:inline-block; width: 1px;"></span>
+          <div class="box">
+            <h2>Something Here</h2>
+            <p>Something Here</p>   
+           </div>
+        	 <span style="display:inline-block; width: 1px;"></span>
+             
+             <div class="row">
+  <div class="boxsmall" style = "float: left;">
+    <div class="parallax" style="background-image: url('https://i.imgur.com/eWtfMME.png');">
+    <button onclick="location.href='list.html'" class="button">Find</button>
+    </div>
+  </div>
+  <div class="boxsmall" style = "float: right;">
+ 	 <div class="parallax" style="background-image: url('https://wallpaperclicker.com/storage/wallpaper/High-Definition-Ultra-HD-Wallpaper-96262544.jpg');">
+  	<button onclick="location.href='rating.html'" class="button">Rate</button>
+    </div>
+</div>
+</div>
+     <span style="display:inline-block; width: 1px;"></span>
+<div class="box">
+  <p>bahbah</p>
+    <p>bahbah</p>
+    <p>bahbah</p>
+    <p>bahbah</p>
+    <p>bahbah</p>
+</div>
+
+<br>
+    
+<div class="box">
+  <p>Footer</p>
+</div>
+
+    
+</div>
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+}
+
+</script>
+
+</body>
 </html>

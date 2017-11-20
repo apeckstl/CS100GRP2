@@ -1,0 +1,669 @@
+  <style>
+@import "compass/css3";
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+
+@accent-2-color = #98aabb;
+    
+:root {
+  --main-color: brown;
+--accent-1-color: white;
+    --accent-2-color: #98aabb;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+     font-family: "Roboto";
+    height: 100%;
+    background-color: slategrey;
+}
+
+/* Style the top navigation bar */
+.topnav {
+    overflow: hidden;
+    background-color: #98aabb;
+    border-radius: 4px;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 5px 20px 0 rgba(0,0,0,0.19);
+}
+
+/* Style the topnav links */
+.topnav a {
+	text-align: center;
+  	position: relative;
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 13.5px 45px;
+    text-decoration: none;
+  	overflow: hidden;
+  	background-color: #98aabb; /*white*/
+  	color: white; /*#98aabb*/
+    display: block;
+	font-size: 25px;
+	cursor: pointer;
+	-webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+.topnav b {
+	text-align: center;
+  	position: relative;
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 16px 45px;
+    text-decoration: none;
+  	overflow: hidden;
+  	background-color: #98aabb; /*white*/
+  	color: white; /*#98aabb*/
+    display: block;
+	font-size: 25px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+    background-color: white;
+    color: #98aabb;
+    border-radius: 1px;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 5px 20px 0 rgba(0,0,0,0.19);
+}
+
+.topnav a:before {
+  content: "";
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  
+  display: block;
+  width: 0;
+  padding-top: 0;
+    
+  border-radius: 100%;
+  
+  background-color: rgba(236, 240, 241, .3);
+    -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+}
+
+.topnav a:active:before {
+  width: 120%;
+  padding-top: 120%;
+  
+  transition: width .2s ease-out, padding-top .2s ease-out;
+}
+    
+    
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    /*background-color: #ddd;*/
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 10px;
+}
+    
+.sidenav a {
+  	position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: 8px 8px 8px 8px;
+    text-decoration: none;
+    font-size: 25px;
+    background-color: #98aabb;
+    color: white;
+    display: block;
+	cursor: pointer;
+	-webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+    
+.sidenav a:hover {
+    background-color: white;
+    color: #98aabb;
+     border-radius: 1px;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 5px 20px 0 rgba(0,0,0,0.19);
+}
+
+.sidenav a:before {
+  content: "";
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  
+  display: block;
+  width: 0;
+  padding-top: 0;
+    
+  border-radius: 100%;
+  
+  background-color: rgba(236, 240, 241, .3);
+    -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+}
+
+.sidenav a:active:before {
+  width: 120%;
+  padding-top: 120%;
+  
+  transition: width .2s ease-out, padding-top .2s ease-out;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+
+/* Style the content */
+.content {
+    /*background-color: #ddd;*/
+    text-align: center;
+    /*vertical-align: 50%;*/
+    /*padding: 100%px;*/
+    height: 99%; 
+}
+
+.box {
+	background-color: #98aabb;
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+    overflow: hidden;
+    /*vertical-align: 50%;*/
+    padding: 10px;
+     /* Should be removed. Only for demonstration */
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 5px 20px 0 rgba(0,0,0,0.19);
+}
+
+.boxsmall {
+	background-color: #98aabb;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 4px;
+    /*vertical-align: 50%;*/
+    width: 49.45%;
+     height: 500px;
+     /* Should be removed. Only for demonstration */
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 5px 20px 0 rgba(0,0,0,0.19);
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+    float: left;
+    text-align: center;
+    height-align: center;
+    width: 50%;
+     padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+    
+}
+
+/* Style the footer */
+.footer {
+    background-color: #98aabb;
+    color: white;
+    padding: 50px;
+}
+
+.button {
+
+ 
+text-align: center;
+  position: relative;
+
+  display: block;
+  margin:  auto;
+  padding: 0;
+
+  overflow: hidden;
+
+
+ border: 2px solid #98aabb;
+  outline: none;
+  border-radius: 40px;
+  
+  background-color: #98aabb; /*white*/
+   color: white; /*#98aabb*/
+    display: block;
+  padding: 15px 100px;
+font-size:18px;
+cursor: pointer;
+-webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+
+}
+
+.button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 5px 20px 0 rgba(0,0,0,0.19);
+    background-color: white;
+    color: #98aabb;
+     border: 2px solid white;
+}
+
+.button:before {
+  content: "";
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  
+  display: block;
+  width: 0;
+  padding-top: 0;
+    
+  border-radius: 100%;
+  
+  background-color: rgba(236, 240, 241, .3);
+    -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+}
+
+.button:active:before {
+  width: 120%;
+  padding-top: 120%;
+  
+  transition: width .2s ease-out, padding-top .2s ease-out;
+}
+
+.buttoncontrast {
+
+ 
+text-align: center;
+  position: relative;
+
+  display: block;
+  margin:  auto;
+  padding: 0;
+
+  overflow: hidden;
+
+
+ border: 2px solid #98aabb;
+  outline: none;
+  border-radius: 40px;
+  
+  background-color: white; /*white*/
+   color: #98aabb; /*#98aabb*/
+    display: block;
+  padding: 15px 100px;
+font-size:18px;
+cursor: pointer;
+-webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+
+}
+
+.buttoncontrast:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 5px 20px 0 rgba(0,0,0,0.19);
+    background-color: white;
+    color: #98aabb;
+     border: 2px solid white;
+}
+
+.buttoncontrast:before {
+  content: "";
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  
+  display: block;
+  width: 0;
+  padding-top: 0;
+    
+  border-radius: 100%;
+  
+  background-color: rgba(236, 240, 241, .3);
+    -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+}
+
+.buttoncontrast:active:before {
+  width: 120%;
+  padding-top: 120%;
+  
+  transition: width .2s ease-out, padding-top .2s ease-out;
+}
+
+.parallax {
+    /* The image used */
+    
+
+    /* Full height */
+    height: 100%; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 85%;
+    
+}
+
+
+.table{
+    
+   text-align: center; 
+    
+    
+}
+
+.inputfield {
+
+ 
+text-align: center;
+  position: relative;
+
+  display: block;
+  margin:  auto;
+  padding: 0;
+
+  overflow: hidden;
+
+
+ border: 2px solid white;
+  outline: none;
+  border-radius: 4px;
+  
+  background-color: white; /*white*/
+   color: white; /*#98aabb*/
+    display: block;
+  padding: 15px ;
+font-size: 16px;
+    width: 50%;
+-webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+
+}
+
+
+/* form starting stylings ------------------------------- */
+.group 			  { 
+  position:relative;
+}
+input			{
+background-color: rgba(0, 0, 0, 0);
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:300px;
+  border:none;
+  /*border-bottom:1px solid white;*/
+}
+input:focus 		{ outline:none; }
+
+/* LABEL ======================================= */
+label 				 {
+  color:#98aabb;
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+/* active state */
+input:focus ~ label, input:valid ~ label 		{
+  top:-10px;
+  font-size:14px;
+  color:#98aabb;
+}
+
+/* BOTTOM BARS ================================= */
+.bar 	{ position:relative; display:block; width:300px; }
+.bar:before, .bar:after 	{
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background:#98aabb; 
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+
+/* active state */
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+  width:50%;
+}
+
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+  position:absolute;
+  height:60%; 
+  width:100px; 
+  top:25%; 
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}
+
+/* active state */
+input:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+	from { background:#98aabb; }
+  to 	{ width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+	from { background:#98aabb; }
+  to 	{ width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+	from { background:#98aabb; }
+  to 	{ width:0; background:transparent; }
+}
+
+
+.inputarea {
+
+ 
+text-align: center;
+  position: relative;
+
+  display: block;
+  margin:  auto;
+  padding: 0;
+
+  overflow: hidden;
+
+
+ border: 2px solid white;
+  outline: none;
+  border-radius: 4px;
+  
+  background-color: white; /*white*/
+   color: white; /*#98aabb*/
+    display: block;
+  padding: 15px ;
+font-size: 16px;
+    width: 50%;
+    height: 200px;
+-webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+
+}
+
+
+/* form starting stylings ------------------------------- */
+.grouparea			  { 
+  position:relative; 
+}
+inputarea				{
+background-color: rgba(0, 0, 0, 0);
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:300px;
+  border:none;
+  /*border-bottom:1px solid white;*/
+}
+textarea:focus 		{ outline:none; }
+
+/* LABEL ======================================= */
+labelarea 				 {
+  color:#98aabb;
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+/* active state */
+textarea:focus ~ label, textarea:valid ~ label 		{
+  top:-10px;
+  font-size:14px;
+  color:#98aabb;
+}
+
+/* active state */
+
+/* HIGHLIGHTER ================================== */
+
+/* active state */
+textarea:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+
+.inputareaclass{
+    padding-top: 10px;
+    font-size:18px;
+    border: none;
+    background-color: transparent;
+    resize: none;
+    outline: none;
+}
+
+    
+#full-stars-example-two {
+  /* use display:inline-flex to prevent whitespace issues. alternatively, you can put all the children of .rating-group on a single line */
+  /* make hover effect work properly in IE */
+  /* hide radio inputs */
+  /* hide 'none' input from screenreaders */
+  /* set icon padding and size */
+  /* set default star color */
+  /* if any input is checked, make its following siblings grey */
+  /* make all stars orange on rating group hover */
+  /* make hovered input's following siblings grey on hover */
+}
+#full-stars-example-two .rating-group {
+  display: inline-flex;
+}
+#full-stars-example-two .rating__icon {
+  pointer-events: none;
+}
+#full-stars-example-two .rating__input {
+  position: absolute !important;
+  left: -9999px !important;
+}
+#full-stars-example-two .rating__input--none {
+  display: none;
+}
+#full-stars-example-two .rating__label {
+  cursor: pointer;
+  padding: 0 0.1em;
+  font-size: 2rem;
+}
+#full-stars-example-two .rating__icon--star {
+  color: orange;
+}
+#full-stars-example-two .rating__input:checked ~ .rating__label .rating__icon--star {
+  color: #ddd;
+}
+#full-stars-example-two .rating-group:hover .rating__label .rating__icon--star {
+  color: orange;
+}
+#full-stars-example-two .rating__input:hover ~ .rating__label .rating__icon--star {
+  color: #ddd;
+}
+
+
+
+
+
+
+
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+    .parallax {
+        background-attachment: scroll;
+    }
+}
+
+/* Turn off parallax scrolling for tablets and phones. Increase the pixels if needed
+@media only screen and (max-device-width: 1024px) */
+
+</style>
