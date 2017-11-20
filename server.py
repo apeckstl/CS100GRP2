@@ -50,7 +50,7 @@ def locations():
    rows = cur.fetchall(); 
    return render_template("locations.html",rows = rows)
 
-@server.route('ratings/<>')
+# @server.route('ratings/<>')
 
 @server.route('/reflect/<name>')
 def reflect(name=None):
