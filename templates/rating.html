@@ -1,31 +1,129 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+<title>CS 100 Project</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+</head>
    <body>
-      
-      <form action = "/rate" method = "post">
-         <h3>Rating</h3>
-         Title<br>
-         <input type = "text" name = "title" /></br>
-         
-         Review<br>
-         <input type = "text" name = "review" /></br>
-         
-         Rating<br>
-         <input type="radio" name="rating" value="1"> 1 star<br>
-         <input type="radio" name="rating" value="2"> 2 stars<br>
-         <input type="radio" name="rating" value="3"> 3 stars<br>
-         <input type="radio" name="rating" value="4"> 4 stars<br>
-         <input type="radio" name="rating" value="5"> 5 stars<br>
-         
-         Name (will be displayed with your review)<br>
-         <input type = "text" name = "name" ></textarea><br>
-         
-         <input type="text" name="place" value={{location}}>
-         
-         <input type = "submit" value = "submit" /><br>
-         
-         
-      </form>
-      
+      <div id="mySidenav" class="sidenav">
+    <div class="content" style = "padding: 6px 10px 0px 20px;">
+        <div class="box" style = "padding: 0px;">
+          <a href="javascript:void(0)"  onclick="closeNav()">&times;
+              </a>
+        </div>
+        <span style="display:inline-block; width: 1px;"></span>
+    <div class="box" style = "padding: 0px; height: 80%">
+
+          <a href="index.html">Home</a>
+          <a href="myplaces.html">My Places</a>
+          <a href="list.html">Find</a>
+          <a href="rating.html">Rate</a>
+     </div>
+    </div>
+</div>
+        <div id="main" class="content">
+            <div class="topnav">
+            <a onclick="openNav()">&#9776;</a>
+              <b>
+                  Hello, {{ name }}, Welcome to ???App
+              </b>
+          </div>
+            <span style="display:inline-block; width: 1px;"></span>
+            <div class="box">
+            <form action = "/rate" method = "post">
+                 <h1>Rating</h1>
+                    <div class="inputfield">
+                        <div class="group">     
+                          <input type="text" name = "title" style="width:400px;" required>
+                          <span class="highlight"></span>
+                          <span class="bar"></span>
+                          <label>Title</label>
+                        </div>   
+                </div>
+                <br>
+                <div class="inputfield">
+                        <div class="group">      
+                          <input type="text" name = "name" style="width:400px;" required>
+                          <span class="highlight"></span>
+                          <span class="bar"></span>
+                          <label>Name</label>
+                        </div>   
+                </div>
+                <br>
+                <!--<div class="inputfield">
+                        <div class="group">      
+                          <input type="text" required>
+                          <span class="highlight"></span>
+                          <span class="bar"></span>
+                          <label>Review</label>
+                        </div>   
+                </div>
+                <br>-->
+                <!--CHANGE TO <input type = "text" name = "review" /></br>-->
+                <div class="inputfield">
+                        <div class="group">      
+                          <input type="text" name = "place" style="width:400px; value={{location}}" required>
+                          <span class="highlight"></span>
+                          <span class="bar"></span>
+                          <label>Place</label>
+                        </div>   
+                </div>
+                <br>
+                <div class="inputarea">
+                        <div class="grouparea">      
+                          <textarea name = "review" class="inputareaclass" rows="9" cols="42" required></textarea>
+                          <span class="highlight"></span>
+                          <label>Review</label>
+                        </div>   
+                </div>
+                 <!--<textarea name = "review" ></textarea><br>-->
+                <br>
+                 Rating<br>
+                 <input type="radio" name="rating" value="1" required> 1 star<br>
+                 <input type="radio" name="rating" value="2" required> 2 stars<br>
+                 <input type="radio" name="rating" value="3" required> 3 stars<br>
+                 <input type="radio" name="rating" value="4" required> 4 stars<br>
+                 <input type="radio" name="rating" value="5" required> 5 stars<br>
+
+                
+                
+<!--<div id="full-stars-example-two">
+    <div class="rating-group">
+        <input disabled checked class="rating__input rating__input--none" name="rating3" id="rating3-none" value="0" type="radio">
+        <label title="1 star" class="rating__label" for="rating3-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating3" id="rating3-1" value="1" type="radio">
+        <label title="2 stars" class="rating__label" for="rating3-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating3" id="rating3-2" value="2" type="radio">
+        <label title="3 stars" class="rating__label" for="rating3-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating3" id="rating3-3" value="3" type="radio">
+        <label title="4 stars" class="rating__label" for="rating3-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating3" id="rating3-4" value="4" type="radio">
+        <label title="5 stars" class="rating__label" for="rating3-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating3" id="rating3-5" value="5" type="radio">
+    </div>
+</div>-->
+                <br>
+                 <input class="buttoncontrast" type = "submit" value = "Submit" /><br>
+              </form>   
+                </div> 
+       </div>
+
+       
+       
+    <script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+}
+
+</script>
+    
    </body>
 </html>
