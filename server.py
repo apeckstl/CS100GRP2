@@ -39,18 +39,6 @@ def page_not_found(error):
     return render_template('404.html'), 404
 
 # Responding to Requests with Data
-@server.route('/locations')
-def locations():
-   con = sql.connect("locations.db")
-   con.row_factory = sql.Row
-   
-   cur = con.cursor()
-   cur.execute("select * from locations")
-   
-   rows = cur.fetchall(); 
-   return render_template("locations.html",rows = rows)
-
-#@server.route('ratings/<>')
 
 @server.route('/reflect/<name>')
 def reflect(name=None):
@@ -81,10 +69,21 @@ def location_image(search):
     response = requests.request("GET", url, params=querystring)
     return response.url;
     
-    
+#Pick a place to rate
+@server.route('/new_rating')
+def new_rating():
+   con = sql.connect("locations.db")
+   con.row_factory = sql.Row
+   
+   cur = con.cursor()
+   cur.execute("select * from locations")
+   
+   rows = cur.fetchall(); 
+   return render_template("new_rating.html",rows = rows)
+#Rate form  
 @server.route('/rate/<place_id>')
 def rate_page(place_id):
-   return render_template('rating.html',location=place_id)
+   return render_template('rate.html',location=place_id)
    
 @server.route('/rate',methods = ['POST', 'GET'])
 def rate():
@@ -111,6 +110,19 @@ def rate():
          return render_template("result.html",msg=msg)
          con.close()
          
+#Returns list of locations
+@server.route('/locations')
+def locations():
+   con = sql.connect("locations.db")
+   con.row_factory = sql.Row
+   
+   cur = con.cursor()
+   cur.execute("select * from locations")
+   
+   rows = cur.fetchall(); 
+   return render_template("locations.html",rows = rows)
+ 
+#Returns the ratings for a specific place         
 @server.route('/ratings/<place_id>')
 def ratings(place_id):
    con = sql.connect("database.db")
@@ -122,6 +134,12 @@ def ratings(place_id):
    rows = cur.fetchall(); 
    return render_template("list.html",rows = rows)
    
+
+   
+  
+#To make our lives easier
+  
+  
 @server.route('/create_ratings')
 def create_ratings():
     con = sql.connect("database.db")
