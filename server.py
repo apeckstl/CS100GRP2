@@ -111,13 +111,13 @@ def rate():
          return render_template("result.html",msg=msg)
          con.close()
          
-@server.route('/list')
-def list():
+@server.route('/ratings/<place_id>')
+def ratings(place_id):
    con = sql.connect("database.db")
    con.row_factory = sql.Row
    
    cur = con.cursor()
-   cur.execute("select * from ratings")
+   cur.execute("select * from ratings WHERE location=(?)",(place_id,))
    
    rows = cur.fetchall(); 
    return render_template("list.html",rows = rows)
