@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>CS 100 Project</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<html>
+
+<body>
+    <div id="mySidenav" class="sidenav">
+        <div class="content" style="padding: 6px 10px 0px 20px;">
+            <div class="box" style="padding: 0px;">
+                <a href="javascript:void(0)" onclick="closeNav()">&times;
+                  </a>
+            </div>
+            <span style="display:inline-block; width: 1px;"></span>
+            <div class="box" style="padding: 0px; height: 80%">
+                <a href="/">Home</a>
+                <a href="/locations">Find</a>
+                <a href="/new_rating">Rate</a>
+            </div>
+        </div>
+    </div>
+    <div id="main" class="content">
+        <div class="topnav">
+            <a onclick="openNav()">&#9776;</a>
+            <b>
+                  IIT Yelp
+              </b>
+        </div>
+        <br>
+        <div class="box">
+            <!--This is where the place name goes. Probably make this bigger @Christopher-->
+            {% for row in rows2 %}
+            <div>{{row["name"]}}</div>
+            {% endfor %}
+            <!--End place name-->
+            <table>
+                <thead>
+                    <th>Title</th>
+                    <th>Review</th>
+                    <th>Rating</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Location</th>
+                </thead>
+
+                {% for row in rows %}
+
+                <tr>
+                    <td>{{row["title"]}}</td>
+                    <td>{{row["review"]}}</td>
+                    <td>{{row["rating"]}}</td>
+                    <td>{{row["name"]}}</td>
+                    <td>{{row["date"]}}</td>
+                    <td>{{row["location"]}}</td>
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+            <br>
+        </div>
+
+    </div>
+
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+    </script>
+
+</body>
+
+</html>

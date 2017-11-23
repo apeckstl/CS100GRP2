@@ -112,7 +112,7 @@ def rate():
          
 #Returns list of locations
 @server.route('/locations')
-def locations():
+def location():
    con = sql.connect("locations.db")
    con.row_factory = sql.Row
    
@@ -127,12 +127,18 @@ def locations():
 def ratings(place_id):
    con = sql.connect("database.db")
    con.row_factory = sql.Row
-   
    cur = con.cursor()
    cur.execute("select * from ratings WHERE location=(?)",(place_id,))
    
+   con2 = sql.connect("locations.db")
+   con2.row_factory = sql.Row
+   cur2 = con2.cursor()
+   cur2.execute("select * from locations WHERE id=(?)",(place_id,))
+   
+   
    rows = cur.fetchall(); 
-   return render_template("list.html",rows = rows)
+   rows2 = cur2.fetchall();
+   return render_template("ratings.html",rows = rows,rows2 = rows2)
    
 
    
