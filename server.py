@@ -145,8 +145,7 @@ def ratings(place_id):
   
 #To make our lives easier
   
-  
-@server.route('/create_ratings')
+@server.before_first_request
 def create_ratings():
     con = sql.connect("database.db")
     cursor = con.cursor()
@@ -154,18 +153,13 @@ def create_ratings():
     cursor.execute("INSERT INTO ratings VALUES (?,?,?,?,?,?)",("Great Quiet Coffeehouse","The atmosphere was great! It's very close to campus, and the coffee is awesome.","5","CS Student",2017-11-18,"ChIJZWZ6QRMsDogRpCk7IQyoP8g") )
     cursor.execute("INSERT INTO ratings VALUES (?,?,?,?,?,?)",("Very historic building","Great example of Mies' work!","4","Arkie",2017-11-18,"ChIJz8uyCg0sDogRD7rGqlEJIXA") )   
     con.commit()
-
-@server.route('/create-locations')
-def create_locations():
+    
     con = sql.connect("locations.db")
     cursor = con.cursor()
     cursor.execute("CREATE TABLE locations (name text, id text, type text);")
     cursor.execute("INSERT INTO locations VALUES (?,?,?)",("S. R. Crown Hall","ChIJz8uyCg0sDogRD7rGqlEJIXA","study") )
     cursor.execute("INSERT INTO locations VALUES (?,?,?)",("Armour Square Park","ChIJmaLdhRQsDogRuLEiq-h3d6A","park") )   
     con.commit()
-    
-@server.route('/add-locations')
-def add_locations():
     con = sql.connect("locations.db")
     cursor = con.cursor()
     cursor.execute("INSERT INTO locations VALUES (?,?,?)",("Lao Sze Chuan","ChIJvbgep2EsDogR6A601lrlnYg","restaurant") )
@@ -189,3 +183,5 @@ def add_locations():
     cursor.execute("INSERT INTO locations VALUES (?,?,?)",("Dunkin Donuts","ChIJe0StBUcsDogRiv2PwuXBaVg","cafe") )
     cursor.execute("INSERT INTO locations VALUES (?,?,?)",("Mariano's Bronzeville","ChIJr16JMPgrDogRJn8yKYSvTjk","cafe") )
     con.commit()
+
+    
