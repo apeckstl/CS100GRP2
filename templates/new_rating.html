@@ -1,11 +1,42 @@
 <!doctype html>
+<html lang="en">
+<head>
+<title>CS 100 Project</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/static/css/styles.css">
+</head>
 <html>
    <body>
-   
-      <table border = 1>
+      <div id="mySidenav" class="sidenav">
+          <div class="content" style = "padding: 6px 10px 0px 20px;">
+            <div class="box" style = "padding: 0px;">
+              <a href="javascript:void(0)"  onclick="closeNav()">&times;
+                  </a>
+            </div>
+        <span style="display:inline-block; width: 1px;"></span>
+              <div class="box" style = "padding: 0px; height: 80%">
+          <a href="/">Home</a>
+          <!--<a href="myplaces.html">My Places</a>-->
+          <a href="/locations">Find</a>
+          <a href="/new_rating">Rate</a>
+              </div>
+          </div>
+    </div>
+   <div id="main" class="content">
+            <div class="topnav">
+            <a onclick="openNav()">&#9776;</a>
+              <b>
+                  IIT Yelp
+              </b>
+          </div> 
+           <br>
+                <div class="box">
+
+                          <table border = 1>
          <thead>
-            <td>Name</td>
-            <td>Type</td>
+            <th>Name</th>
+            <th>Type</th>
          </thead>
          
          {% for row in rows %}
@@ -15,8 +46,22 @@
             </tr>
          {% endfor %}
       </table>
-      
-      <a href = "/">Go back to home page</a>
-      
+           </div>
+       </div>
+       
+       
+           <script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+}
+
+</script>
+       
    </body>
 </html>
