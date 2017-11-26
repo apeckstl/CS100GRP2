@@ -28,7 +28,14 @@
               <b>
                   IIT Yelp
               </b>
+              
           </div>
+          <br>
+          <!--This is where the place name goes-->
+            {% for row in rows %}
+            <div class="box"><h3>{{row["name"]}}</h3></div>
+            {% endfor %}
+            <!--End place name-->
             <span style="display:inline-block; width: 1px;"></span>
             <div class="box">
             <form action = "/rate" method = "post">

@@ -83,7 +83,13 @@ def new_rating():
 #Rate form  
 @server.route('/rate/<place_id>')
 def rate_page(place_id):
-   return render_template('rate.html',location=place_id)
+   con = sql.connect("locations.db")
+   con.row_factory = sql.Row
+   cur = con.cursor()
+   cur.execute("select * from locations WHERE id=(?)",(place_id,))
+   
+   rows = cur.fetchall(); 
+   return render_template('rate.html',location=place_id,rows=rows)
    
 @server.route('/rate',methods = ['POST', 'GET'])
 def rate():
@@ -115,7 +121,7 @@ def rate():
 def location():
    con = sql.connect("locations.db")
    con.row_factory = sql.Row
-   
+
    cur = con.cursor()
    cur.execute("select * from locations")
    
@@ -149,19 +155,15 @@ def ratings(place_id):
 def create_ratings():
     con = sql.connect("database.db")
     cursor = con.cursor()
-    cursor.execute("CREATE TABLE ratings (title text, review text, rating int, name text, date datetime, location text);")
+    cursor.execute("CREATE TABLE IF NOT EXISTS ratings (title text, review text, rating int, name text, date datetime, location text);")
     cursor.execute("INSERT INTO ratings VALUES (?,?,?,?,?,?)",("Great Quiet Coffeehouse","The atmosphere was great! It's very close to campus, and the coffee is awesome.","5","CS Student",2017-11-18,"ChIJZWZ6QRMsDogRpCk7IQyoP8g") )
     cursor.execute("INSERT INTO ratings VALUES (?,?,?,?,?,?)",("Very historic building","Great example of Mies' work!","4","Arkie",2017-11-18,"ChIJz8uyCg0sDogRD7rGqlEJIXA") )   
     con.commit()
     
     con = sql.connect("locations.db")
     cursor = con.cursor()
-    cursor.execute("CREATE TABLE locations (name text, id text, type text);")
+    cursor.execute("CREATE TABLE IF NOT EXISTS locations (name text, id text, type text);")
     cursor.execute("INSERT INTO locations VALUES (?,?,?)",("S. R. Crown Hall","ChIJz8uyCg0sDogRD7rGqlEJIXA","study") )
-    cursor.execute("INSERT INTO locations VALUES (?,?,?)",("Armour Square Park","ChIJmaLdhRQsDogRuLEiq-h3d6A","park") )   
-    con.commit()
-    con = sql.connect("locations.db")
-    cursor = con.cursor()
     cursor.execute("INSERT INTO locations VALUES (?,?,?)",("Lao Sze Chuan","ChIJvbgep2EsDogR6A601lrlnYg","restaurant") )
     cursor.execute("INSERT INTO locations VALUES (?,?,?)",("Buffalo Wings and Rings","ChIJqXBBmzksDogR8pDe_sK-74Q","restaurant") )
     cursor.execute("INSERT INTO locations VALUES (?,?,?)",("Chicago Home of Chicken and Waffles","ChIJ_0VX-vgrDogRnZLnFyFz2DE","restaurant") )
